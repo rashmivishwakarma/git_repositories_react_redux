@@ -1,9 +1,26 @@
+// import React from 'react';
+// import {render} from 'react-dom';
+// import GitRepoComponent from './component/gitRepoComponent'
+
+// const App = () =>
+//   <div>
+//        <GitRepoComponent></GitRepoComponent>
+//   </div>;
+
+// render(<App />, document.getElementById('root'));
+
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import {Provider} from 'react-redux';
+import reducer from './reducer/reducer';
+import GitRepoComponent from './component/gitRepoComponent';
+import createLogger from 'redux-logger';
+import thunk from 'redux-thunk'
 
-const App = () =>
-  <div>
-       <h1>I am react component</h1>
-  </div>;
+//SINGLE STORE 
+const store = createStore(reducer, applyMiddleware(thunk,createLogger));
 
-render(<App />, document.getElementById('root'));
+render( <Provider store={store}><GitRepoComponent /></Provider>, document.getElementById('root'));
+
+export default store;

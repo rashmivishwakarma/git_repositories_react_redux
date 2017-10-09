@@ -20,7 +20,6 @@ function displayGitRepo(username) {
                 }
             };
              req.onerror = function() {
-                  console.log('>>>>>>>>>> error network');
                 reject(new Error("Network error"));
             };
             req.send();

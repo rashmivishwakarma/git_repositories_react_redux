@@ -12,8 +12,10 @@ function displayGitRepo(username) {
                         for (let repoObj in repoArray) {
                             unameArray.push(repoArray[repoObj].name);
                         }
+                        dispatch(succFun(unameArray))
+                    }else if(repoArray.length == 0){
+                        dispatch(succFunNoUser(unameArray))
                     }
-                    dispatch(succFun(unameArray))
                 } else {
                     let error = req.statusText
                    dispatch(errFun(req.statusText))
@@ -31,6 +33,13 @@ const succFun = (unameArray) => ({
     type: 'GIT_REPO_SUCCESS',
     payload: {
         unameArray
+    }
+});
+
+const succFunNoUser = (NoRepo) => ({
+    type: 'GIT_REPO_SUCCESS_NO_REPO',
+    payload: {
+        NoRepo
     }
 });
 

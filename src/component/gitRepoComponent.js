@@ -9,7 +9,8 @@ class GitRepoComponent extends React.Component {
         super(props);
         this.state = {
             gitUserName : '',
-            flag: true
+            flag: true,
+            data: ''
         }
         this.getGitRepo = this.getGitRepo.bind(this);
         this.getGitUserName = this.getGitUserName.bind(this);
@@ -38,19 +39,23 @@ class GitRepoComponent extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            data: nextProps
+        })
+    }
+
     render(){
         let responseData = " ";
-        if(this.props.successData && this.props.success){
+        if(this.state.data.successData){
             let temp = this.props.successData.getIn(['unameArray']);
-            if(temp.size > 0){
-                responseData = temp.map((repo) => {
-                    return <li key={repo}>{repo}</li>
-                })
-            } else {
-                responseData = <li>You have 0 repo</li>
-            }
-        } else if (this.props.errorData && !this.props.success){
+            responseData = temp.map((repo) => {
+                return <li key={repo}>{repo}</li>
+            })
+        } else if(this.state.data.errorData){
             responseData = <li>user not foundd</li>
+        } else if(this.state.data.NoRepo){
+            responseData = <li>You have 0 repo</li>
         }
 
         return(
@@ -71,7 +76,7 @@ function mapStateToProps(state){
     return {
         successData: state.getIn(['repoName']),
         errorData: state.getIn(['error']),
-        success: state.getIn(['success'])
+        NoRepo : state.getIn(['NoRepo'])
     }
 }
 

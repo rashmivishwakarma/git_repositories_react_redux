@@ -5,11 +5,18 @@ function reducer(state=INITIAL_STATE, action){
     switch(action.type){
         case 'GIT_REPO_SUCCESS': return state.merge({
                 repoName : action.payload,
-                success: true
+                NoRepo: '',
+                error: ''
+            });
+        case 'GIT_REPO_SUCCESS_NO_REPO' : return state.merge({
+                NoRepo : action.payload,
+                repoName: '',
+                error: ''
             });
         case 'GIT_REPO_ERROR' : return state.merge({
                 error : action.payload,
-                success: false
+                repoName: '',
+                NoRepo: ''
             });
         default: return state;
     }

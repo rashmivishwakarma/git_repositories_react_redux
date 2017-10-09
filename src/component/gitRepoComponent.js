@@ -39,9 +39,9 @@ class GitRepoComponent extends React.Component {
     }
 
     render(){
-        var responseData = " ";
+        let responseData = " ";
         if(this.props.successData && this.props.success){
-            var temp = this.props.successData.getIn(['unameArray']);
+            let temp = this.props.successData.getIn(['unameArray']);
             if(temp.size > 0){
                 responseData = temp.map((repo) => {
                     return <li key={repo}>{repo}</li>

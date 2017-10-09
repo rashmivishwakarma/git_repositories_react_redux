@@ -6,16 +6,16 @@ function displayGitRepo(username) {
             req.onload = function() {
                 if (req.status === 200) {
                     resolve(req.response);
-                    var repoArray = JSON.parse(req.response);
-                    var unameArray = [];
+                    let repoArray = JSON.parse(req.response);
+                    let unameArray = [];
                     if(repoArray.length > 0) {
-                        for (var repoObj in repoArray) {
+                        for (let repoObj in repoArray) {
                             unameArray.push(repoArray[repoObj].name);
                         }
                     }
                     dispatch(succFun(unameArray))
                 } else {
-                    var error = req.statusText
+                    let error = req.statusText
                    dispatch(errFun(req.statusText))
                 }
             };

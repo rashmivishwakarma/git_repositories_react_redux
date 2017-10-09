@@ -1,6 +1,6 @@
 ## Fetch Git Repositories using react redux
 
-Starting with react and es6, looking for some simple template here you got your page :)
+Fetch git repositories using react and redux
 
 ##### Extra files used :
 

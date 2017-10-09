@@ -1,14 +1,3 @@
-// import React from 'react';
-// import {render} from 'react-dom';
-// import GitRepoComponent from './component/gitRepoComponent'
-
-// const App = () =>
-//   <div>
-//        <GitRepoComponent></GitRepoComponent>
-//   </div>;
-
-// render(<App />, document.getElementById('root'));
-
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
